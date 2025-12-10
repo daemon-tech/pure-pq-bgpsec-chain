@@ -18,3 +18,8 @@ roas/temp-*
 *.csr
 *.srl
 
+# Ignore all markdown files except README.md and RESULTS.md
+*.md
+!README.md
+!RESULTS.md
+
