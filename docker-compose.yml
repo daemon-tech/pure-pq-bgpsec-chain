@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  pure-pq-bgpsec:
+    build: .
+    container_name: pure-pq-bgpsec-chain
+    volumes:
+      # Mount the entire repo directory for live work
+      - .:/work
+      # Mount oqs-provider (if built on host, adjust path as needed)
+      # Option 1: If oqs-provider is built in sibling directory
+      - ../oqs-provider-bgpsec:/opt/oqs-provider:ro
+      # Option 2: If you want to build oqs-provider inside this container instead,
+      # comment out the above line and uncomment the build section in Dockerfile
+    environment:
+      - OPENSSL_MODULES=/opt/oqs-provider/build/lib
+      - OPENSSL_CONF=/opt/oqs-provider/bgpsec-openssl.cnf
+      - PATH=/opt/oqs-provider/build/bin:$PATH
+      - LD_LIBRARY_PATH=/usr/local/lib:/opt/oqs-provider/build/lib
+    working_dir: /work
+    # Run with: docker-compose run --rm pure-pq-bgpsec bash
+    # Or run scripts: docker-compose run --rm pure-pq-bgpsec ./generate-roa-openssl.sh
+    command: bash
+

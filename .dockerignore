@@ -1,0 +1,36 @@
+# Git files
+.git
+.gitignore
+
+# Documentation (except README)
+*.md
+!README.md
+
+# Build artifacts
+__pycache__/
+*.pyc
+*.pyo
+
+# Temporary files
+*.tmp
+*.log
+*.swp
+*.swo
+
+# ROA generation temp files
+roas/*.txt
+roas/temp-*
+
+# Certificate build artifacts (keep final certs)
+*.csr
+*.srl
+
+# IDE files
+.vscode/
+.idea/
+*.code-workspace
+
+# OS files
+.DS_Store
+Thumbs.db
+
